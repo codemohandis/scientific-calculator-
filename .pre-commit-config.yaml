@@ -1,0 +1,96 @@
+# Pre-commit hooks for code quality and consistency
+# Installation: pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  # Python formatting with black
+  - repo: https://github.com/psf/black
+    rev: '23.9.1'
+    hooks:
+      - id: black
+        language_version: python3.11
+        args: ['--line-length=100']
+
+  # Python linting with ruff
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 'v0.1.0'
+    hooks:
+      - id: ruff
+        args: ['check', '--line-length=100']
+      - id: ruff-format
+
+  # Type checking with mypy
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: 'v1.5.0'
+    hooks:
+      - id: mypy
+        args: ['--strict']
+        additional_dependencies: ['pint']
+        files: ^src/
+
+  # General checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 'v4.4.0'
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+  # Python docstring formatting
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: '6.3.0'
+    hooks:
+      - id: pydocstyle
+        args: ['--ignore=D100,D104']
+        files: ^src/
+
+  # Security checks
+  - repo: https://github.com/PyCQA/bandit
+    rev: '1.7.5'
+    hooks:
+      - id: bandit
+        args: ['-c', '.bandit', '-r', 'src/']
+
+  # JavaScript/Frontend checks via npm
+  - repo: local
+    hooks:
+      - id: eslint
+        name: eslint
+        entry: npm run lint
+        language: system
+        pass_filenames: false
+        stages: [commit]
+        files: 'frontend/src/.*\.(js|jsx)$'
+
+      - id: prettier
+        name: prettier
+        entry: npm run format
+        language: system
+        pass_filenames: false
+        stages: [commit]
+        files: 'frontend/.*\.(js|jsx|css|html)$'
+
+      - id: frontend-tests
+        name: frontend-tests
+        entry: npm test
+        language: system
+        pass_filenames: false
+        stages: [commit]
+        files: 'frontend/src/.*\.(js|jsx)$'
+
+  # Pytest for backend
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        pass_filenames: false
+        stages: [commit]
+        always_run: true
+        args: ['tests/', '-v', '--tb=short']

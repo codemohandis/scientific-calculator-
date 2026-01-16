@@ -1,0 +1,59 @@
+[bandit]
+# Bandit security checks configuration
+exclude_dirs = [
+    '/tests',
+    '/venv',
+    '/.venv',
+]
+
+skips = []
+
+# Security issue definitions to check
+# B101: assert_used
+# B102: exec_used
+# B103: set_bad_file_permissions
+# B104: hardcoded_bind_all_interfaces
+# B105: hardcoded_password_string
+# B106: hardcoded_password_funcarg
+# B107: hardcoded_password_default
+# B108: hardcoded_tmp_directory
+# B109: password_config_option_not_marked_secret
+# B110: try_except_pass
+# B111: execute_with_run_as_root_equals_true
+# B112: password_config_option_not_marked_secret
+# B113: request_with_no_cert_validation
+# B201: flask_debug_true
+# B301: pickle
+# B302: marshal
+# B303: md5
+# B304: cipher
+# B305: cipher
+# B306: mktemp_q
+# B307: eval
+# B308: mark_safe
+# B309: httpsconnection
+# B310: url_open
+# B311: random
+# B312: telnetlib
+# B313: xmlrpc
+# B314: xml
+# B315: xml
+# B316: xml
+# B317: xml
+# B318: xml
+# B319: xml
+# B320: xml
+# B321: ftplib
+# B322: unverified_context
+# B323: unverified_context
+# B324: hashlib
+# B325: tempnam
+
+[bandit:assert_used]
+skips = []
+
+[bandit:blacklist_calls]
+blacklist_calls = [
+    ('pickle.loads', 'pickle.load'),
+    ('marshal.load', 'marshal.loads'),
+]
