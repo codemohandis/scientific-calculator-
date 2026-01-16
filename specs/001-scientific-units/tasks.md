@@ -44,24 +44,24 @@
 
 ### Backend Core Infrastructure
 
-- [ ] T013 Create exception hierarchy in `src/scientific_calculator/exceptions.py` (CalculatorException, SyntaxError, DomainError, DimensionalityError, EvaluationError)
-- [ ] T014 [P] Create Unit enum/registry wrapper in `src/scientific_calculator/units.py` wrapping Pint UnitRegistry with singleton pattern
-- [ ] T015 [P] Implement Pint unit initialization with all base units (distance, mass, temperature, volume) and derived units (velocity, force, pressure, energy, power, magnetic flux)
-- [ ] T016 [P] Create mathematical constants (π, e) lookup in `src/scientific_calculator/units.py`
-- [ ] T017 Implement temperature conversion formulas (Celsius ↔ Fahrenheit ↔ Kelvin with offset handling) in `src/scientific_calculator/units.py`
-- [ ] T018 Create whitelisted operator dictionary in `src/scientific_calculator/expression_evaluator.py` (Add, Sub, Mult, Div, Pow, Mod, USub, UAdd)
-- [ ] T019 [P] Create whitelisted function registry in `src/scientific_calculator/functions.py` (trigonometric, logarithmic, exponential, statistical)
-- [ ] T020 Implement type hints and type definitions in `src/scientific_calculator/__init__.py` (Number, Value, Operator, Function types)
-- [ ] T021 Setup API layer skeleton in `src/scientific_calculator/api.py` (entry points for evaluate(), convert(), list_units(), list_functions())
+- [x] T013 Create exception hierarchy in `src/scientific_calculator/exceptions.py` (CalculatorException, SyntaxError, DomainError, DimensionalityError, EvaluationError)
+- [x] T014 [P] Create Unit enum/registry wrapper in `src/scientific_calculator/units.py` wrapping Pint UnitRegistry with singleton pattern
+- [x] T015 [P] Implement Pint unit initialization with all base units (distance, mass, temperature, volume) and derived units (velocity, force, pressure, energy, power, magnetic flux)
+- [x] T016 [P] Create mathematical constants (π, e) lookup in `src/scientific_calculator/units.py`
+- [x] T017 Implement temperature conversion formulas (Celsius ↔ Fahrenheit ↔ Kelvin with offset handling) in `src/scientific_calculator/units.py`
+- [x] T018 Create whitelisted operator dictionary in `src/scientific_calculator/expression_evaluator.py` (Add, Sub, Mult, Div, Pow, Mod, USub, UAdd)
+- [x] T019 [P] Create whitelisted function registry in `src/scientific_calculator/functions.py` (trigonometric, logarithmic, exponential, statistical)
+- [x] T020 Implement type hints and type definitions in `src/scientific_calculator/__init__.py` (Number, Value, Operator, Function types)
+- [x] T021 Setup API layer skeleton in `src/scientific_calculator/api.py` (entry points for evaluate(), convert(), list_units(), list_functions())
 
 ### Frontend Core Infrastructure
 
-- [ ] T022 [P] Create main HTML entry point `frontend/index.html` with semantic structure for calculator interface
-- [ ] T023 [P] Create base CSS stylesheet `frontend/src/styles/main.css` with WCAG 2.1 AA accessible color contrasts and typography
-- [ ] T024 Create accessibility utilities module `frontend/src/utils/accessibility.js` (ARIA labels, focus management, keyboard navigation helpers)
-- [ ] T025 [P] Create API client service `frontend/src/services/calculatorApi.js` with methods for calling backend endpoints
-- [ ] T026 Create error handling and user feedback component `frontend/src/utils/errorHandler.js` (user-friendly messages, logging)
-- [ ] T027 Create form validation utilities `frontend/src/utils/validation.js` (input sanitization, expression validation)
+- [x] T022 [P] Create main HTML entry point `frontend/index.html` with semantic structure for calculator interface
+- [x] T023 [P] Create base CSS stylesheet `frontend/src/styles/main.css` with WCAG 2.1 AA accessible color contrasts and typography
+- [x] T024 Create accessibility utilities module `frontend/src/utils/accessibility.js` (ARIA labels, focus management, keyboard navigation helpers)
+- [x] T025 [P] Create API client service `frontend/src/services/calculatorApi.js` with methods for calling backend endpoints
+- [x] T026 Create error handling and user feedback component `frontend/src/utils/errorHandler.js` (user-friendly messages, logging)
+- [x] T027 Create form validation utilities `frontend/src/utils/validation.js` (input sanitization, expression validation)
 
 **Checkpoint**: Foundation complete - backend AST infrastructure and frontend UI foundation ready for user stories
 
