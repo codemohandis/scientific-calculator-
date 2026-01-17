@@ -207,6 +207,36 @@ export async function getConversionFactor(fromUnit, toUnit) {
 }
 
 /**
+ * Evaluates a scientific function.
+ *
+ * @param {string} functionName - Name of the function to evaluate
+ * @param {Array} args - Arguments to pass to the function
+ * @returns {Promise<Object>} - Result with evaluated value
+ * @throws {Error} - If function evaluation fails
+ *
+ * Example:
+ * ```
+ * const result = await evaluateFunction('sin', [30]);
+ * // { result: 0.5, error: null }
+ * ```
+ */
+export async function evaluateFunction(functionName, args) {
+  try {
+    const response = await apiClient.post('/functions', {
+      function: functionName,
+      arguments: args,
+    });
+
+    return response.data;
+  } catch (error) {
+    return {
+      result: null,
+      error: error.response?.data?.error || 'Function evaluation failed',
+    };
+  }
+}
+
+/**
  * Health check - verifies backend is available.
  *
  * @returns {Promise<boolean>} - True if backend is healthy
@@ -263,6 +293,7 @@ export function addResponseInterceptor(onSuccess, onError) {
 export default {
   convert,
   evaluateExpression,
+  evaluateFunction,
   getUnits,
   getFunctions,
   getFunctionInfo,
