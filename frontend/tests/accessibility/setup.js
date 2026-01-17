@@ -3,7 +3,7 @@
  * Configures axe-core for WCAG 2.1 AA testing.
  */
 
-import { axe, toHaveNoViolations } from 'jest-axe';
+const { axe, toHaveNoViolations } = require('jest-axe');
 
 expect.extend(toHaveNoViolations);
 

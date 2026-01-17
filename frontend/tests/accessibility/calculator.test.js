@@ -3,7 +3,7 @@
  * Validates WCAG 2.1 AA compliance using axe-core.
  */
 
-import { axe, toHaveNoViolations } from 'jest-axe';
+const { axe, toHaveNoViolations } = require('jest-axe');
 
 expect.extend(toHaveNoViolations);
 

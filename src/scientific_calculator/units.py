@@ -12,16 +12,21 @@ Provides:
 from __future__ import annotations
 
 import math
+from typing import TYPE_CHECKING, Any
 
 from pint import UnitRegistry
 
 from scientific_calculator.exceptions import DimensionalityError, UnitError
 
+if TYPE_CHECKING:
+    from pint.errors import DimensionalityError as PintDimensionalityError
+    from pint.errors import UndefinedUnitError
+
 # Module-level singleton instance
-_registry: UnitRegistry | None = None
+_registry: UnitRegistry[Any] | None = None
 
 
-def get_registry() -> UnitRegistry:
+def get_registry() -> UnitRegistry[Any]:
     """
     Get or create the global unit registry.
 
@@ -37,8 +42,7 @@ def get_registry() -> UnitRegistry:
 
 def _setup_units() -> None:
     """Initialize all base and derived units in the registry."""
-    registry = _registry
-    assert registry is not None
+    registry = get_registry()
 
     # Register base units (SI base units are already in Pint)
     # Distance: meter, kilometer, mile, foot, inch, yard
@@ -87,8 +91,8 @@ def _setup_units() -> None:
     registry.define("e = 1 * dimensionless")
 
     # Set PI and E values
-    _registry.pi = math.pi
-    _registry.e = math.e
+    registry.pi = math.pi  # type: ignore[attr-defined]
+    registry.e = math.e  # type: ignore[attr-defined]
 
 
 def convert(value: float, from_unit: str, to_unit: str) -> float:
@@ -137,10 +141,12 @@ def convert(value: float, from_unit: str, to_unit: str) -> float:
         return float(result.magnitude)
     except UndefinedUnitError as e:
         raise UnitError(
-            f"Unknown unit",
+            "Unknown unit",
             {"invalid_unit": str(e)},
         ) from e
-    except DimensionalityError as e:
+    except (PintDimensionalityError, Exception) as e:
+        # Catch DimensionalityError and also OffsetUnitCalculusError
+        # which is raised when trying to do arithmetic with offset units
         raise DimensionalityError(
             f"Cannot convert {from_unit} to {to_unit}: incompatible dimensions",
             {"from_unit": from_unit, "to_unit": to_unit},
@@ -210,6 +216,16 @@ def get_conversion_factor(from_unit: str, to_unit: str) -> float:
 
 # Import Pint exceptions for proper error handling
 try:
-    from pint.errors import UndefinedUnitError  # type: ignore
+    from pint.errors import DimensionalityError as PintDimensionalityError
+    from pint.errors import UndefinedUnitError
 except ImportError:
-    UndefinedUnitError = Exception  # Fallback
+
+    class UndefinedUnitError(Exception):  # type: ignore[no-redef]
+        """Fallback for UndefinedUnitError."""
+
+        pass
+
+    class PintDimensionalityError(Exception):  # type: ignore[no-redef]
+        """Fallback for PintDimensionalityError."""
+
+        pass

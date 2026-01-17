@@ -84,13 +84,13 @@
 
 > **WRITE THESE TESTS FIRST - ensure they FAIL before implementation**
 
-- [ ] T028 [P] [US1] Unit test for kilometer-to-mile conversion in `tests/unit/test_conversions.py` (test accurate conversion factors, edge cases)
-- [ ] T029 [P] [US1] Unit test for temperature conversions (Celsius ↔ Fahrenheit ↔ Kelvin) in `tests/unit/test_temperature_conversions.py` (test offset formulas)
-- [ ] T030 [P] [US1] Unit test for mass conversions in `tests/unit/test_mass_conversions.py` (pound ↔ kg, gram conversions)
-- [ ] T031 [P] [US1] Unit test for volume conversions in `tests/unit/test_volume_conversions.py` (liter ↔ gallon conversions)
-- [ ] T032 [P] [US1] Unit test for invalid unit pair error handling in `tests/unit/test_conversion_errors.py` (unknown units, incompatible dimensions)
-- [ ] T033 [P] [US1] Integration test for unit conversion workflow in `tests/integration/test_unit_conversion_workflow.py` (end-to-end conversion operations)
-- [ ] T034 [P] [US1] Accessibility test for conversion results display in `frontend/tests/accessibility/test_conversion_display.js` (WCAG contrast, labels, keyboard access)
+- [x] T028 [P] [US1] Unit test for kilometer-to-mile conversion in `tests/unit/test_conversions.py` (test accurate conversion factors, edge cases)
+- [x] T029 [P] [US1] Unit test for temperature conversions (Celsius ↔ Fahrenheit ↔ Kelvin) in `tests/unit/test_temperature_conversions.py` (test offset formulas)
+- [x] T030 [P] [US1] Unit test for mass conversions in `tests/unit/test_mass_conversions.py` (pound ↔ kg, gram conversions)
+- [x] T031 [P] [US1] Unit test for volume conversions in `tests/unit/test_volume_conversions.py` (liter ↔ gallon conversions)
+- [x] T032 [P] [US1] Unit test for invalid unit pair error handling in `tests/unit/test_conversion_errors.py` (unknown units, incompatible dimensions)
+- [x] T033 [P] [US1] Integration test for unit conversion workflow in `tests/integration/test_unit_conversion_workflow.py` (end-to-end conversion operations)
+- [x] T034 [P] [US1] Accessibility test for conversion results display in `frontend/tests/accessibility/test_conversion_display.js` (WCAG contrast, labels, keyboard access)
 
 ### Implementation for User Story 1
 
