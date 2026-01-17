@@ -188,28 +188,28 @@
 
 > **WRITE THESE TESTS FIRST - ensure they FAIL before implementation**
 
-- [ ] T082 [P] [US3] Unit test for operator precedence in `tests/unit/test_expression_precedence.py` (multiply before add, exponent right-associative)
-- [ ] T083 [P] [US3] Unit test for parentheses grouping in `tests/unit/test_expression_grouping.py` (correct override of precedence)
-- [ ] T084 [P] [US3] Unit test for function composition in `tests/unit/test_function_composition.py` (nested functions, sin(log(x)))
-- [ ] T085 [P] [US3] Unit test for mixed conversions and operations in `tests/unit/test_mixed_expressions.py` (5km / 2 hours, unit combinations)
-- [ ] T086 [P] [US3] Unit test for expression error locations in `tests/unit/test_expression_errors.py` (clear position reporting for syntax/domain errors)
-- [ ] T087 [P] [US3] Integration test for complex expression workflows in `tests/integration/test_complex_expressions.py` (end-to-end parsing and evaluation)
-- [ ] T088 [P] [US3] Accessibility test for expression input field in `frontend/tests/accessibility/test_expression_input.js` (labels, error announcements, keyboard navigation)
+- [x] T082 [P] [US3] Unit test for operator precedence in `tests/unit/test_expression_precedence.py` (multiply before add, exponent right-associative)
+- [x] T083 [P] [US3] Unit test for parentheses grouping in `tests/unit/test_expression_grouping.py` (correct override of precedence)
+- [x] T084 [P] [US3] Unit test for function composition in `tests/unit/test_function_composition.py` (nested functions, sin(log(x)))
+- [x] T085 [P] [US3] Unit test for mixed conversions and operations in `tests/unit/test_mixed_expressions.py` (5km / 2 hours, unit combinations)
+- [x] T086 [P] [US3] Unit test for expression error locations in `tests/unit/test_expression_errors.py` (clear position reporting for syntax/domain errors)
+- [x] T087 [P] [US3] Integration test for complex expression workflows in `tests/integration/test_complex_expressions.py` (end-to-end parsing and evaluation)
+- [x] T088 [P] [US3] Accessibility test for expression input field in `frontend/tests/accessibility/test_expression_input.js` (labels, error announcements, keyboard navigation)
 
 ### Implementation for User Story 3
 
-- [ ] T089 [US3] Implement `visit_BinOp()` in `src/scientific_calculator/expression_evaluator.py` for binary operations with unit awareness
-- [ ] T090 [US3] Implement `visit_UnaryOp()` in `src/scientific_calculator/expression_evaluator.py` for unary operations (negation, positive)
-- [ ] T091 [US3] Implement `visit_Constant()` in `src/scientific_calculator/expression_evaluator.py` for numeric literals
-- [ ] T092 [US3] Implement `visit_Name()` in `src/scientific_calculator/expression_evaluator.py` for variable references (units, constants)
-- [ ] T093 [US3] Implement `evaluate()` public method in `src/scientific_calculator/expression_evaluator.py` with full error handling
-- [ ] T094 [US3] Add expression validation in `src/scientific_calculator/expression_evaluator.py` (max length 1000 chars, balanced parentheses, character whitelist)
-- [ ] T095 [US3] Implement Pint-aware operations in `src/scientific_calculator/expression_evaluator.py` visit methods (unit multiplication/division/cancellation)
-- [ ] T096 [US3] Add dimensionality error handling for incompatible unit operations in `src/scientific_calculator/expression_evaluator.py`
-- [ ] T097 [P] [US3] Create expression evaluation API endpoint in `src/scientific_calculator/api.py` → `evaluate(expression)` method
-- [ ] T098 [US3] Implement expression syntax validation with helpful error messages in `src/scientific_calculator/expression_evaluator.py`
-- [ ] T099 [P] [US3] Create expression input component `frontend/src/components/ExpressionInput.js` (text input with code-like styling, submit button, history)
-- [ ] T100 [P] [US3] Create expression result display component `frontend/src/components/ExpressionResult.js` (formatted output with unit display, copy-to-clipboard)
+- [x] T089 [US3] Implement `visit_BinOp()` in `src/scientific_calculator/expression_evaluator.py` for binary operations with unit awareness
+- [x] T090 [US3] Implement `visit_UnaryOp()` in `src/scientific_calculator/expression_evaluator.py` for unary operations (negation, positive)
+- [x] T091 [US3] Implement `visit_Constant()` in `src/scientific_calculator/expression_evaluator.py` for numeric literals
+- [x] T092 [US3] Implement `visit_Name()` in `src/scientific_calculator/expression_evaluator.py` for variable references (units, constants)
+- [x] T093 [US3] Implement `evaluate()` public method in `src/scientific_calculator/expression_evaluator.py` with full error handling
+- [x] T094 [US3] Add expression validation in `src/scientific_calculator/expression_evaluator.py` (max length 1000 chars, balanced parentheses, character whitelist)
+- [x] T095 [US3] Implement Pint-aware operations in `src/scientific_calculator/expression_evaluator.py` visit methods (unit multiplication/division/cancellation)
+- [x] T096 [US3] Add dimensionality error handling for incompatible unit operations in `src/scientific_calculator/expression_evaluator.py`
+- [x] T097 [P] [US3] Create expression evaluation API endpoint in `src/scientific_calculator/api.py` → `evaluate(expression)` method
+- [x] T098 [US3] Implement expression syntax validation with helpful error messages in `src/scientific_calculator/expression_evaluator.py`
+- [x] T099 [P] [US3] Create expression input component `frontend/src/components/ExpressionInput.js` (text input with code-like styling, submit button, history)
+- [x] T100 [P] [US3] Create expression result display component `frontend/src/components/ExpressionResult.js` (formatted output with unit display, copy-to-clipboard)
 - [ ] T101 [US3] Implement expression input handler in `frontend/src/components/ExpressionInput.js` (real-time validation, API call, result display)
 - [ ] T102 [US3] Add expression syntax help/hints in `frontend/src/components/ExpressionHelp.js` (syntax examples, operator precedence explanation)
 - [ ] T103 [P] [US3] Create expression history component `frontend/src/components/HistoryPanel.js` (recent expressions, one-click repeat)
