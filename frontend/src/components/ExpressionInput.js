@@ -11,6 +11,24 @@
  * - Accessibility support (WCAG 2.1 AA)
  */
 
+/**
+ * Create and render the expression input form
+ * @returns {HTMLElement} The form element
+ */
+export function createExpressionInput() {
+    const container = document.createElement('div');
+    container.id = 'expression-input-container';
+
+    // Instantiate ExpressionInput after returning (it will initialize on next tick)
+    setTimeout(() => {
+        if (container.parentElement) {
+            new ExpressionInput('expression-input-container');
+        }
+    }, 0);
+
+    return container;
+}
+
 class ExpressionInput {
   constructor(containerId, options = {}) {
     this.container = document.getElementById(containerId);

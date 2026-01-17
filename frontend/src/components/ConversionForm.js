@@ -9,7 +9,7 @@
  * Create and render the conversion form
  * @returns {HTMLElement} The form element
  */
-function createConversionForm() {
+export function createConversionForm() {
     const form = document.createElement('form');
     form.id = 'conversion-form';
     form.className = 'conversion-form';
@@ -254,16 +254,3 @@ function announceToScreenReader(message) {
     }
 }
 
-// Export for use in other modules
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        createConversionForm,
-        populateUnitSelect,
-        handleConversionSubmit,
-        convertUnits,
-        displayConversionResult,
-        showErrorMessage,
-        copyResultToClipboard,
-        announceToScreenReader,
-    };
-}

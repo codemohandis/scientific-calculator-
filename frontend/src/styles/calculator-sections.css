@@ -1,0 +1,261 @@
+/*
+ * Calculator Section Component Styles
+ * Individual calculator card styling with visual separation
+ */
+
+/* ============================================
+   BASE CALCULATOR SECTION
+   Card-like appearance with border and padding
+   ============================================ */
+.calculator-section {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md); /* 16px mobile */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  transition: var(--transition);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover effect - subtle lift */
+.calculator-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   SECTION TITLE
+   Visual hierarchy for calculator section
+   ============================================ */
+.calculator-section__title {
+  font-size: 18px; /* 18px on mobile */
+  font-weight: 600;
+  color: var(--color-primary-light);
+  margin: 0 0 12px 0; /* No top margin, 12px bottom */
+  line-height: 1.2;
+}
+
+/* ============================================
+   SECTION CONTENT
+   Container for calculator form elements
+   ============================================ */
+.calculator-section__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* ============================================
+   SECTION RESULT
+   Display area for calculation results
+   ============================================ */
+.calculator-section__result {
+  min-height: 60px; /* Reserve space for results */
+  padding: var(--spacing-md);
+  background-color: var(--color-bg);
+  border-radius: calc(var(--border-radius) - 2px);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.calculator-section__result:empty {
+  background-color: transparent;
+  border: none;
+  min-height: auto;
+  padding: 0;
+}
+
+/* ============================================
+   SECTION-SPECIFIC COLORS (Optional)
+   Distinct background colors per section
+   ============================================ */
+
+/* Unit Conversions - Light Blue */
+.calculator-section:nth-child(1) {
+  --section-bg-color: #f0f7ff;
+  --section-accent-color: #0066cc;
+  --section-accent-light: #e0f0ff;
+}
+
+.calculator-section:nth-child(1) .calculator-section__title {
+  color: var(--section-accent-color);
+}
+
+.calculator-section:nth-child(1) {
+  background-color: var(--section-bg-color);
+  border-color: var(--section-accent-light);
+}
+
+/* Scientific Functions - Light Green */
+.calculator-section:nth-child(2) {
+  --section-bg-color: #f0fdf4;
+  --section-accent-color: #059669;
+  --section-accent-light: #d0fce0;
+}
+
+.calculator-section:nth-child(2) .calculator-section__title {
+  color: var(--section-accent-color);
+}
+
+.calculator-section:nth-child(2) {
+  background-color: var(--section-bg-color);
+  border-color: var(--section-accent-light);
+}
+
+/* Expression Evaluator - Light Purple */
+.calculator-section:nth-child(3) {
+  --section-bg-color: #faf5ff;
+  --section-accent-color: #7c3aed;
+  --section-accent-light: #f3e8ff;
+}
+
+.calculator-section:nth-child(3) .calculator-section__title {
+  color: var(--section-accent-color);
+}
+
+.calculator-section:nth-child(3) {
+  background-color: var(--section-bg-color);
+  border-color: var(--section-accent-light);
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS - TABLET
+   Increase padding and title size
+   ============================================ */
+@media (min-width: 768px) {
+  .calculator-section {
+    padding: 20px; /* 20px on tablet */
+  }
+
+  .calculator-section__title {
+    font-size: 19px;
+    margin-bottom: 14px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS - DESKTOP
+   Maximum comfort with increased spacing
+   ============================================ */
+@media (min-width: 1200px) {
+  .calculator-section {
+    padding: 24px; /* 24px on desktop */
+  }
+
+  .calculator-section__title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .calculator-section__result {
+    min-height: 70px;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE ADJUSTMENTS
+   Reduce padding and spacing for tight screens
+   ============================================ */
+@media (max-width: 479px) {
+  .calculator-section {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .calculator-section__title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .calculator-section__content {
+    gap: 12px;
+  }
+
+  .calculator-section__result {
+    padding: 10px;
+    min-height: 50px;
+  }
+}
+
+/* ============================================
+   FOCUS STATES
+   Keyboard navigation improvements
+   ============================================ */
+.calculator-section:focus-within {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   Adapt colors for dark mode preference
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  .calculator-section {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border);
+  }
+
+  /* Unit Conversions - Darker Blue */
+  .calculator-section:nth-child(1) {
+    background-color: rgba(0, 102, 204, 0.1);
+    border-color: rgba(0, 102, 204, 0.2);
+  }
+
+  /* Scientific Functions - Darker Green */
+  .calculator-section:nth-child(2) {
+    background-color: rgba(5, 150, 105, 0.1);
+    border-color: rgba(5, 150, 105, 0.2);
+  }
+
+  /* Expression Evaluator - Darker Purple */
+  .calculator-section:nth-child(3) {
+    background-color: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.2);
+  }
+
+  .calculator-section__result {
+    background-color: var(--color-bg);
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   Optimize for printing
+   ============================================ */
+@media print {
+  .calculator-section {
+    page-break-inside: avoid;
+    border: 2px solid #000;
+    background-color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .calculator-section__title {
+    color: #000;
+    font-weight: 700;
+  }
+
+  .calculator-section:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   Respect user's motion preference
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .calculator-section {
+    transition: none;
+  }
+
+  .calculator-section:hover {
+    transform: none;
+  }
+}

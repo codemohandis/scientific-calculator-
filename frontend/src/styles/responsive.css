@@ -1,0 +1,142 @@
+/*
+ * Responsive Layout Styles
+ * Mobile-First Approach: Base styles are mobile, media queries add larger screens
+ *
+ * Breakpoints:
+ * - Mobile: < 768px (base styles)
+ * - Tablet: 768px - 1199px (2 columns)
+ * - Desktop: >= 1200px (3 columns)
+ */
+
+/* ============================================
+   TABLET BREAKPOINT (768px+)
+   2-Column Layout
+   ============================================ */
+@media (min-width: 768px) {
+  .calculator-layout {
+    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+    gap: 20px; /* Slightly larger gap for tablet */
+  }
+}
+
+/* ============================================
+   DESKTOP BREAKPOINT (1200px+)
+   3-Column Layout with centered container
+   ============================================ */
+@media (min-width: 1200px) {
+  .calculator-layout {
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 24px; /* Largest gap for desktop */
+    max-width: 1400px; /* Constrain width */
+    margin-left: auto; /* Center */
+    margin-right: auto;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE (< 480px)
+   Extra small devices get appropriate spacing
+   ============================================ */
+@media (max-width: 479px) {
+  .calculator-layout {
+    gap: 12px; /* Tighter spacing on small devices */
+  }
+
+  .calculator-section {
+    padding: 12px; /* Reduce padding on small screens */
+  }
+
+  .calculator-section__title {
+    font-size: 16px; /* Reduce title size */
+  }
+}
+
+/* ============================================
+   LARGE DESKTOP (> 1600px)
+   Further refinements for ultra-wide screens
+   ============================================ */
+@media (min-width: 1601px) {
+  .calculator-layout {
+    max-width: 1600px;
+  }
+}
+
+/* ============================================
+   LANDSCAPE ORIENTATION ADJUSTMENTS
+   Tablets in landscape may show 3 columns
+   ============================================ */
+@media (min-width: 960px) and (orientation: landscape) {
+  .calculator-layout {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+/* ============================================
+   PRINT MEDIA
+   Ensure calculator layout prints properly
+   ============================================ */
+@media print {
+  .calculator-layout {
+    display: block; /* Single column for print */
+  }
+
+  .calculator-section {
+    page-break-inside: avoid; /* Keep sections together */
+    margin-bottom: 20px;
+  }
+}
+
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   Larger touch targets on mobile/tablet
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    min-height: 48px; /* Extra large for touch */
+    min-width: 48px;
+  }
+
+  input,
+  textarea,
+  select {
+    min-height: 48px; /* Touch-friendly inputs */
+  }
+}
+
+/* ============================================
+   HIGH DPI / RETINA DISPLAYS
+   Sharper borders and outlines
+   ============================================ */
+@media (min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+  button:focus,
+  input[type="button"]:focus,
+  input[type="submit"]:focus,
+  input[type="reset"]:focus {
+    outline-width: 1px; /* Thinner outline on high DPI */
+  }
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   Adapts colors for dark mode preference
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1a1a1a;
+    --color-bg-secondary: #2d2d2d;
+    --color-border: #404040;
+    --color-primary: #e0e0e0;
+    --color-primary-light: #ffffff;
+    --color-secondary: #b0b0b0;
+  }
+
+  .calculator-section {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border);
+  }
+}

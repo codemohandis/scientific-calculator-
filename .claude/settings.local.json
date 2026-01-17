@@ -4,7 +4,9 @@
       "Bash(python -m pytest:*)",
       "Bash(npx jest:*)",
       "Bash(npm run test:a11y:*)",
-      "Bash(npm install)"
+      "Bash(npm install)",
+      "Bash(python demo.py:*)",
+      "Bash(npm test:*)"
     ]
   }
 }

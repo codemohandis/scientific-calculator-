@@ -9,7 +9,7 @@
  * Create and render the function input form
  * @returns {HTMLElement} The form element
  */
-function createFunctionInput() {
+export function createFunctionInput() {
     const form = document.createElement('form');
     form.id = 'function-form';
     form.className = 'function-form';
@@ -418,21 +418,3 @@ function announceToScreenReader(message) {
     }
 }
 
-// Export for use in other modules
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        createFunctionInput,
-        populateFunctionSelect,
-        handleFunctionChange,
-        getArgumentLabels,
-        addArgumentInput,
-        handleFunctionSubmit,
-        evaluateFunction,
-        displayFunctionResult,
-        formatResult,
-        showFunctionError,
-        copyFunctionResult,
-        getFunctionInfo,
-        announceToScreenReader,
-    };
-}

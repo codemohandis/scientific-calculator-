@@ -386,6 +386,130 @@ footer {
   }
 }
 
+/* Calculator Layout - CSS Grid Foundation (Mobile-First) */
+.calculator-layout {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column for mobile */
+  gap: var(--spacing-md); /* 16px spacing between items */
+  width: 100%;
+  margin: var(--spacing-lg) 0;
+}
+
+/* Tabs styling */
+.tabs-container {
+  width: 100%;
+  margin: var(--spacing-lg) 0;
+}
+
+.tab-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--color-border);
+  margin-bottom: 0;
+  gap: 0;
+}
+
+.tab-button {
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--color-secondary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  bottom: -2px;
+  min-width: auto;
+  height: auto;
+}
+
+.tab-button:hover {
+  background-color: transparent;
+  color: var(--color-primary);
+  box-shadow: none;
+}
+
+.tab-button:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.tab-button.active {
+  color: var(--color-primary-light);
+  border-bottom-color: var(--color-accent);
+  background-color: transparent;
+}
+
+.tab-panels {
+  margin-top: var(--spacing-lg);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Conversion form styles */
+.conversion-form,
+.function-input,
+.expression-input {
+  background-color: var(--color-bg-secondary);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 500;
+  color: var(--color-primary-light);
+}
+
+.form-help {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+  margin-top: var(--spacing-xs);
+}
+
+/* Results display */
+.result-display {
+  background-color: var(--color-bg);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--color-success);
+  margin-top: var(--spacing-lg);
+}
+
+.result-display.error {
+  border-left-color: var(--color-error);
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: more) {
   :root {
