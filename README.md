@@ -1,12 +1,14 @@
 # Scientific Calculator 🧮
 
-A powerful, production-ready scientific calculator web application built with React, Vite, and Flask. Features a modern responsive UI, comprehensive mathematical functions, and an RESTful API ready for monetization.
+A powerful, production-ready scientific calculator web application built with React, Vite, and Flask. Features a modern responsive UI, comprehensive mathematical functions, unit conversions, and a RESTful API.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-production%20ready-brightgreen)
+![Python](https://img.shields.io/badge/python-3.8+-blue)
+![Node](https://img.shields.io/badge/node-16+-green)
 
-> **Perfect for:** Students, Engineers, Data Scientists, Businesses, and Developers
+> **Perfect for:** Students, Engineers, Data Scientists, and Developers
 
 ## ✨ Features
 
@@ -58,24 +60,6 @@ scientific-calculator/
 └── README.md                        # This file
 ```
 
-## 💰 Monetization Ready
-
-This calculator is built for commercial deployment:
-
-- ✅ **Freemium Model**: Free tier with premium features
-- ✅ **API Access**: Developer tier pricing
-- ✅ **White-Label Ready**: Easy to customize branding
-- ✅ **Analytics**: Ready for usage tracking and insights
-- ✅ **User Accounts**: Built for authentication integration (Auth0)
-- ✅ **Subscription Support**: Stripe-ready payment integration
-
-**Recommended Revenue Model:**
-- Free tier with ads
-- Pro ($4.99/month): Unlimited saves, PDF export, no ads
-- Business ($19.99/month): API access + team features
-
-See [MONETIZATION.md](MONETIZATION.md) for detailed business plan.
-
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -87,8 +71,8 @@ See [MONETIZATION.md](MONETIZATION.md) for detailed business plan.
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/codemohandis/scientific-calculator.git
-cd scientific-calculator
+git clone https://github.com/codemohandis/scientific-calculator-.git
+cd scientific-calculator-
 ```
 
 2. **Backend Setup (Flask)**
@@ -351,24 +335,27 @@ GET /api/health
 
 ## 🌐 Deployment
 
-### Deploy to Vercel (Frontend)
+### Deploy Frontend to Vercel
 ```bash
 cd frontend
 npm install
-# Connect to Vercel and deploy automatically
+# Connect repository to https://vercel.com
+# Automatic deployment on every push
 ```
 
-### Deploy to Railway/Render (Backend)
+### Deploy Backend to Railway/Render
 1. Push code to GitHub
-2. Connect repository to Railway or Render
+2. Connect repository to [Railway](https://railway.app) or [Render](https://render.com)
 3. Set Python version to 3.8+
-4. Deploy automatically
+4. Deploy automatically on every push
 
-**Hosting Cost Estimates:**
-- Frontend (Vercel): FREE - $20/month
-- Backend (Railway): FREE - $7/month
-- Domain: $12/year
-- **Total: ~$7-27/month**
+### Environment Variables
+Create `.env` file in project root:
+```
+FLASK_ENV=production
+FLASK_DEBUG=False
+CORS_ORIGINS=https://your-domain.com
+```
 
 ## 🤝 Contributing
 
@@ -386,7 +373,7 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 ## 👥 Support & Contact
 
-- **Issues**: [GitHub Issues](https://github.com/codemohandis/scientific-calculator/issues)
+- **GitHub Issues**: [Report issues](https://github.com/codemohandis/scientific-calculator-/issues)
 - **Email**: support@example.com
 - **Author**: [Code Mohandis](https://github.com/codemohandis)
 
@@ -395,11 +382,10 @@ MIT License - See [LICENSE](LICENSE) file for details
 - Flask and React communities
 - Pint for unit conversions
 - Open source contributors
+- WCAG for accessibility guidelines
 
 ---
 
 **Made with ❤️ by Code Mohandis**
 
-⭐ If you find this useful, please star the repository!
-
-💰 **Ready to monetize? Check out [MONETIZATION.md](MONETIZATION.md)**
+⭐ If you find this project useful, please give it a star!
