@@ -374,7 +374,7 @@ MIT License - See [LICENSE](LICENSE) file for details
 ## 👥 Support & Contact
 
 - **GitHub Issues**: [Report issues](https://github.com/codemohandis/scientific-calculator-/issues)
-- **Email**: support@example.com
+- **Email**: mohammad.mehdi.prof@gmail.com
 - **Author**: [Code Mohandis](https://github.com/codemohandis)
 
 ## 🙏 Acknowledgments
