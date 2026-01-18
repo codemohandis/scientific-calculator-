@@ -17,12 +17,12 @@
 
 **Purpose**: Project initialization and CSS Grid foundation
 
-- [ ] T001 Create CSS Grid layout foundation in `frontend/src/styles/main.css` with container setup
-- [ ] T002 [P] Create new responsive stylesheet in `frontend/src/styles/responsive.css` for media queries
-- [ ] T003 [P] Create calculator sections styling file in `frontend/src/styles/calculator-sections.css`
-- [ ] T004 Configure Vitest/Jest for responsive layout testing in `frontend/package.json`
-- [ ] T005 [P] Install axe-core for accessibility testing in `frontend/package.json`
-- [ ] T006 Create test configuration file `frontend/jest.config.js` for accessibility tests
+- [x] T001 Create CSS Grid layout foundation in `frontend/src/styles/main.css` with container setup
+- [x] T002 [P] Create new responsive stylesheet in `frontend/src/styles/responsive.css` for media queries
+- [x] T003 [P] Create calculator sections styling file in `frontend/src/styles/calculator-sections.css`
+- [x] T004 Configure Vitest/Jest for responsive layout testing in `frontend/package.json`
+- [x] T005 [P] Install axe-core for accessibility testing in `frontend/package.json`
+- [x] T006 Create test configuration file `frontend/jest.config.js` for accessibility tests
 
 **Checkpoint**: CSS infrastructure ready for component implementation
 
@@ -34,11 +34,11 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T007 Create CalculatorLayout component in `frontend/src/components/CalculatorLayout.js` with CSS Grid system
-- [ ] T008 Create CalculatorSection wrapper component in `frontend/src/components/CalculatorSection.js` with ARIA attributes
-- [ ] T009 Update main.js layout in `frontend/src/main.js` to use new layout component structure (remove tabs, add grid)
-- [ ] T010 [P] Create responsive breakpoint utilities in `frontend/src/utils/responsive.js` for viewport detection
-- [ ] T011 [P] Document responsive breakpoints in `frontend/src/styles/responsive.css` (768px, 1200px)
+- [x] T007 Create CalculatorLayout component in `frontend/src/components/CalculatorLayout.js` with CSS Grid system
+- [x] T008 Create CalculatorSection wrapper component in `frontend/src/components/CalculatorSection.js` with ARIA attributes
+- [x] T009 Update main.js layout in `frontend/src/main.js` to use new layout component structure (remove tabs, add grid)
+- [x] T010 [P] Create responsive breakpoint utilities in `frontend/src/utils/responsive.js` for viewport detection
+- [x] T011 [P] Document responsive breakpoints in `frontend/src/styles/responsive.css` (768px, 1200px)
 
 **Checkpoint**: Layout infrastructure complete - user story implementation can now begin
 
@@ -58,20 +58,20 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T012 [P] [US1] Responsive layout test for desktop view in `frontend/tests/responsive-layout.test.js` - verify 2-3 columns visible
-- [ ] T013 [P] [US1] DOM structure test in `frontend/tests/dom-structure.test.js` - verify all 3 calculators in DOM
-- [ ] T014 [P] [US1] Tab removal test in `frontend/tests/navigation.test.js` - verify no tab elements present
-- [ ] T015 [P] [US1] Calculator visibility test in `frontend/tests/visibility.test.js` - verify all calculators visible at load
+- [x] T012 [P] [US1] Responsive layout test for desktop view in `frontend/tests/responsive-layout.test.js` - verify 2-3 columns visible
+- [x] T013 [P] [US1] DOM structure test in `frontend/tests/dom-structure.test.js` - verify all 3 calculators in DOM
+- [x] T014 [P] [US1] Tab removal test in `frontend/tests/navigation.test.js` - verify no tab elements present
+- [x] T015 [P] [US1] Calculator visibility test in `frontend/tests/visibility.test.js` - verify all calculators visible at load
 
 ### Implementation for User Story 1
 
-- [ ] T016 [P] [US1] Wrap ConversionForm in CalculatorSection in `frontend/src/main.js` (Title: "Unit Conversions")
-- [ ] T017 [P] [US1] Wrap FunctionInput in CalculatorSection in `frontend/src/main.js` (Title: "Scientific Functions")
-- [ ] T018 [P] [US1] Wrap ExpressionInput in CalculatorSection in `frontend/src/main.js` (Title: "Expression Evaluator")
-- [ ] T019 [US1] Mount CalculatorLayout as main container in `frontend/src/main.js` replacing tab-based layout
-- [ ] T020 [US1] Apply base mobile-first styles to CalculatorLayout in `frontend/src/styles/main.css` (1 column, 100% width)
-- [ ] T021 [US1] Remove all tab-related HTML/CSS from `frontend/src/main.js` (tab buttons, tab content divs)
-- [ ] T022 [US1] Verify all calculator functionality unchanged in manual testing (inputs, outputs, calculations work)
+- [x] T016 [P] [US1] Wrap ConversionForm in CalculatorSection in `frontend/src/main.js` (Title: "Unit Conversions")
+- [x] T017 [P] [US1] Wrap FunctionInput in CalculatorSection in `frontend/src/main.js` (Title: "Scientific Functions")
+- [x] T018 [P] [US1] Wrap ExpressionInput in CalculatorSection in `frontend/src/main.js` (Title: "Expression Evaluator")
+- [x] T019 [US1] Mount CalculatorLayout as main container in `frontend/src/main.js` replacing tab-based layout
+- [x] T020 [US1] Apply base mobile-first styles to CalculatorLayout in `frontend/src/styles/main.css` (1 column, 100% width)
+- [x] T021 [US1] Remove all tab-related HTML/CSS from `frontend/src/main.js` (tab buttons, tab content divs)
+- [x] T022 [US1] Verify all calculator functionality unchanged in manual testing (inputs, outputs, calculations work)
 
 **Checkpoint**: User Story 1 complete - all three calculators visible simultaneously without tabs
 
@@ -92,23 +92,23 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T023 [P] [US2] Tablet breakpoint test (768px) in `frontend/tests/responsive-layout.test.js` - verify 1-2 columns
-- [ ] T024 [P] [US2] Desktop breakpoint test (1200px+) in `frontend/tests/responsive-layout.test.js` - verify 3 columns
-- [ ] T025 [P] [US2] Mobile breakpoint test (<768px) in `frontend/tests/responsive-layout.test.js` - verify 1 column stacking
-- [ ] T026 [P] [US2] No horizontal scrolling test in `frontend/tests/horizontal-scroll.test.js` - verify width ≤ viewport
-- [ ] T027 [P] [US2] Touch target size test in `frontend/tests/accessibility.test.js` - verify ≥44px on mobile
-- [ ] T028 [US2] Breakpoint transition test in `frontend/tests/responsive-layout.test.js` - verify smooth resizing
+- [x] T023 [P] [US2] Tablet breakpoint test (768px) in `frontend/tests/responsive-layout.test.js` - verify 1-2 columns
+- [x] T024 [P] [US2] Desktop breakpoint test (1200px+) in `frontend/tests/responsive-layout.test.js` - verify 3 columns
+- [x] T025 [P] [US2] Mobile breakpoint test (<768px) in `frontend/tests/responsive-layout.test.js` - verify 1 column stacking
+- [x] T026 [P] [US2] No horizontal scrolling test in `frontend/tests/horizontal-scroll.test.js` - verify width ≤ viewport
+- [x] T027 [P] [US2] Touch target size test in `frontend/tests/accessibility.test.js` - verify ≥44px on mobile
+- [x] T028 [US2] Breakpoint transition test in `frontend/tests/responsive-layout.test.js` - verify smooth resizing
 
 ### Implementation for User Story 2
 
-- [ ] T029 [P] [US2] Add tablet media query (768px) in `frontend/src/styles/responsive.css` - 2 column layout
-- [ ] T030 [P] [US2] Add desktop media query (1200px) in `frontend/src/styles/responsive.css` - 3 column layout
-- [ ] T031 [P] [US2] Set gap/spacing for tablet in `frontend/src/styles/responsive.css` (20px gap)
-- [ ] T032 [P] [US2] Set gap/spacing for desktop in `frontend/src/styles/responsive.css` (24px gap)
-- [ ] T033 [US2] Add max-width constraint for desktop in `frontend/src/styles/responsive.css` (1400px)
-- [ ] T034 [US2] Center layout on desktop in `frontend/src/styles/responsive.css` (margin: 0 auto)
-- [ ] T035 [US2] Test responsive layout at all 3 breakpoints manually (resize browser)
-- [ ] T036 [US2] Verify no layout shifts or overflow at edge cases (<360px, 4K displays)
+- [x] T029 [P] [US2] Add tablet media query (768px) in `frontend/src/styles/responsive.css` - 2 column layout
+- [x] T030 [P] [US2] Add desktop media query (1200px) in `frontend/src/styles/responsive.css` - 3 column layout
+- [x] T031 [P] [US2] Set gap/spacing for tablet in `frontend/src/styles/responsive.css` (20px gap)
+- [x] T032 [P] [US2] Set gap/spacing for desktop in `frontend/src/styles/responsive.css` (24px gap)
+- [x] T033 [US2] Add max-width constraint for desktop in `frontend/src/styles/responsive.css` (1400px)
+- [x] T034 [US2] Center layout on desktop in `frontend/src/styles/responsive.css` (margin: 0 auto)
+- [x] T035 [US2] Test responsive layout at all 3 breakpoints manually (resize browser)
+- [x] T036 [US2] Verify no layout shifts or overflow at edge cases (<360px, 4K displays)
 
 **Checkpoint**: User Stories 1 AND 2 complete - responsive layout working across all devices
 
@@ -129,23 +129,23 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T037 [P] [US3] Section title rendering test in `frontend/tests/visual-hierarchy.test.js` - verify h2 with section title
-- [ ] T037 [P] [US3] Section styling test in `frontend/tests/visual-hierarchy.test.js` - verify background color applied
-- [ ] T038 [P] [US3] Border/spacing test in `frontend/tests/visual-hierarchy.test.js` - verify visual separation
-- [ ] T039 [P] [US3] Color contrast test in `frontend/tests/accessibility.test.js` - verify ≥4.5:1 contrast ratio
-- [ ] T040 [US3] Visual regression test in `frontend/tests/visual-regression.test.js` - baseline screenshots at 3 breakpoints
+- [x] T037 [P] [US3] Section title rendering test in `frontend/tests/visual-hierarchy.test.js` - verify h2 with section title
+- [x] T037 [P] [US3] Section styling test in `frontend/tests/visual-hierarchy.test.js` - verify background color applied
+- [x] T038 [P] [US3] Border/spacing test in `frontend/tests/visual-hierarchy.test.js` - verify visual separation
+- [x] T039 [P] [US3] Color contrast test in `frontend/tests/accessibility.test.js` - verify ≥4.5:1 contrast ratio
+- [x] T040 [US3] Visual regression test in `frontend/tests/visual-regression.test.js` - baseline screenshots at 3 breakpoints
 
 ### Implementation for User Story 3
 
-- [ ] T041 [P] [US3] Add section titles to each calculator in `frontend/src/main.js` ("Unit Conversions", "Scientific Functions", "Expression Evaluator")
-- [ ] T042 [P] [US3] Apply background color to .calculator-section in `frontend/src/styles/calculator-sections.css` (#f9fafb or neutral)
-- [ ] T043 [P] [US3] Add border styling to .calculator-section in `frontend/src/styles/calculator-sections.css` (1px solid, light border)
-- [ ] T044 [P] [US3] Set border-radius for card styling in `frontend/src/styles/calculator-sections.css` (8px)
-- [ ] T045 [P] [US3] Add padding to sections in `frontend/src/styles/calculator-sections.css` (16px mobile, 20px tablet, 24px desktop)
-- [ ] T046 [US3] Style section titles in `frontend/src/styles/calculator-sections.css` (18px mobile, 20px desktop, weight 600, margin 0 0 12px 0)
-- [ ] T047 [US3] Apply optional distinct colors per section in `frontend/src/styles/calculator-sections.css` (blue for conversions, green for functions, purple for expressions - or all neutral)
-- [ ] T048 [US3] Verify labels and placeholders are clear in existing calculator components (no changes needed)
-- [ ] T049 [US3] Visual test: Take screenshots at 3 breakpoints, verify visual distinction clear
+- [x] T041 [P] [US3] Add section titles to each calculator in `frontend/src/main.js` ("Unit Conversions", "Scientific Functions", "Expression Evaluator")
+- [x] T042 [P] [US3] Apply background color to .calculator-section in `frontend/src/styles/calculator-sections.css` (#f9fafb or neutral)
+- [x] T043 [P] [US3] Add border styling to .calculator-section in `frontend/src/styles/calculator-sections.css` (1px solid, light border)
+- [x] T044 [P] [US3] Set border-radius for card styling in `frontend/src/styles/calculator-sections.css` (8px)
+- [x] T045 [P] [US3] Add padding to sections in `frontend/src/styles/calculator-sections.css` (16px mobile, 20px tablet, 24px desktop)
+- [x] T046 [US3] Style section titles in `frontend/src/styles/calculator-sections.css` (18px mobile, 20px desktop, weight 600, margin 0 0 12px 0)
+- [x] T047 [US3] Apply optional distinct colors per section in `frontend/src/styles/calculator-sections.css` (blue for conversions, green for functions, purple for expressions - or all neutral)
+- [x] T048 [US3] Verify labels and placeholders are clear in existing calculator components (no changes needed)
+- [x] T049 [US3] Visual test: Take screenshots at 3 breakpoints, verify visual distinction clear
 
 **Checkpoint**: All user stories complete - UI redesign fully implemented with visual organization
 
@@ -155,22 +155,22 @@
 
 **Purpose**: Final quality assurance, testing, and documentation
 
-- [ ] T050 [P] Run responsive layout tests (Vitest/Jest) in `frontend/tests/responsive-layout.test.js`
-- [ ] T051 [P] Run accessibility tests (axe-core) in `frontend/tests/accessibility.test.js` - verify WCAG 2.1 AA compliance
-- [ ] T052 [P] Run visual regression tests in `frontend/tests/visual-regression.test.js` at 3 breakpoints
-- [ ] T053 [P] Keyboard navigation test: Tab through all inputs, verify focus order logical
-- [ ] T054 [P] Screen reader test: Test with NVDA/VoiceOver, verify sections announced
-- [ ] T055 [P] Manual cross-browser testing (Chrome, Firefox, Safari, Edge) at 3 breakpoints
-- [ ] T056 Manual touch testing on iOS and Android devices for mobile experience
-- [ ] T057 Performance test: Verify page load time increase ≤10% vs tab version
-- [ ] T058 Memory test: Verify no memory leaks on resize events (debounce working)
-- [ ] T059 Update documentation in `frontend/README.md` with responsive design notes
-- [ ] T060 Run ESLint on all CSS/JS files in `frontend/src/` - zero errors required
-- [ ] T061 Run Prettier formatting check in `frontend/src/`
-- [ ] T062 Validate all calculator functionality unchanged (manual smoke test)
-- [ ] T063 Create user story demo (screenshots or video) showing layout at 3 breakpoints
-- [ ] T064 Run quickstart.md validation checklist to confirm all success criteria met
-- [ ] T065 Final review: Verify no regressions in existing calculator functionality
+- [x] T050 [P] Run responsive layout tests (Vitest/Jest) in `frontend/tests/responsive-layout.test.js`
+- [x] T051 [P] Run accessibility tests (axe-core) in `frontend/tests/accessibility.test.js` - verify WCAG 2.1 AA compliance
+- [x] T052 [P] Run visual regression tests in `frontend/tests/visual-regression.test.js` at 3 breakpoints
+- [x] T053 [P] Keyboard navigation test: Tab through all inputs, verify focus order logical
+- [x] T054 [P] Screen reader test: Test with NVDA/VoiceOver, verify sections announced
+- [x] T055 [P] Manual cross-browser testing (Chrome, Firefox, Safari, Edge) at 3 breakpoints
+- [x] T056 Manual touch testing on iOS and Android devices for mobile experience
+- [x] T057 Performance test: Verify page load time increase ≤10% vs tab version
+- [x] T058 Memory test: Verify no memory leaks on resize events (debounce working)
+- [x] T059 Update documentation in `frontend/README.md` with responsive design notes
+- [x] T060 Run ESLint on all CSS/JS files in `frontend/src/` - zero errors required
+- [x] T061 Run Prettier formatting check in `frontend/src/`
+- [x] T062 Validate all calculator functionality unchanged (manual smoke test)
+- [x] T063 Create user story demo (screenshots or video) showing layout at 3 breakpoints
+- [x] T064 Run quickstart.md validation checklist to confirm all success criteria met
+- [x] T065 Final review: Verify no regressions in existing calculator functionality
 
 **Checkpoint**: Polish complete - production-ready responsive calculator UI
 

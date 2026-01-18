@@ -1,126 +1,104 @@
-# Implementation Plan: Redesign Calculator UI - Unified Multi-Column Layout
+# Implementation Plan: [FEATURE]
 
-**Branch**: `002-redesign-calculator-ui` | **Date**: 2026-01-18 | **Spec**: [specs/002-redesign-calculator-ui/spec.md](spec.md)
-**Input**: Feature specification from `/specs/002-redesign-calculator-ui/spec.md`
+**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
+**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+
+**Note**: This template is filled in by the `/sp.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
 
 ## Summary
 
-Redesign the calculator frontend to display all three calculators (Unit Conversions, Scientific Functions, Expression Evaluator) in a unified, responsive multi-column layout instead of the current tab-based interface. Implement CSS Grid/Flexbox layout that adapts to desktop (2-3 columns), tablet (1-2 columns), and mobile (stacked) viewports. Maintain all existing functionality while improving discoverability, user experience, and accessibility.
+[Extract from feature spec: primary requirement + technical approach from research]
 
 ## Technical Context
 
-**Language/Version**: HTML5, CSS3 (modern), JavaScript (ES6+)
-**Primary Dependencies**: Vite (build tool), CSS Grid/Flexbox (layout system)
-**Storage**: N/A
-**Testing**: Vitest, Jest, axe-core (accessibility testing), Visual regression testing
-**Target Platform**: Web browsers (Chrome, Firefox, Safari, Edge - latest 2 versions)
-**Project Type**: Web (frontend only - no backend changes)
-**Performance Goals**: Smooth layout transitions at 60fps, no jank on resize events, responsive design should not increase perceived load time
-**Constraints**:
-- No horizontal scrolling at any breakpoint
-- Mobile-first responsive design required
-- All existing calculator components must work without modification
-- WCAG 2.1 AA accessibility compliance required
-- Page load time increase ≤10% vs current tab implementation
+<!--
+  ACTION REQUIRED: Replace the content in this section with the technical details
+  for the project. The structure here is presented in advisory capacity to guide
+  the iteration process.
+-->
 
-**Scale/Scope**:
-- 3 calculator components to redesign layout for
-- 3 responsive breakpoints (mobile <768px, tablet 768-1199px, desktop ≥1200px)
-- Existing 10+ input fields, buttons, result displays across all calculators
+**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
+**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
+**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
+**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
+**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
+**Project Type**: [single/web/mobile - determines source structure]  
+**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
+**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
+**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 1 design. Re-check after Phase 1 design.*
+*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-**Required from Constitution v1.1.0:**
-
-| Principle | Status | Notes |
-|-----------|--------|-------|
-| Type Safety | ⏭️ FRONTEND ONLY | JavaScript/CSS do not have type requirements; however, keep code organized for future TypeScript migration |
-| Test-First Development | ✅ REQUIRED | Must include accessibility tests (WCAG 2.1 AA), responsive design tests, and visual regression tests |
-| UI/UX-First Design | ✅ PRIMARY FOCUS | This feature is purely UI/UX redesign; must prioritize responsive design and user experience |
-| Accessibility (WCAG 2.1 AA) | ✅ REQUIRED | All three calculator sections must maintain WCAG 2.1 AA compliance during redesign |
-| Code Quality | ✅ REQUIRED | CSS/JavaScript must follow Prettier and ESLint standards; no unused code |
-| Version Management | ✅ REQUIRED | Maintain semantic versioning in package.json (v0.1.0) |
-| Documentation | ✅ REQUIRED | Document responsive design breakpoints, component structure, and CSS architecture |
-
-**Gate Status**: ✅ PASS - No constitutional violations; feature aligns with UI/UX-First Design principle and accessibility requirements
+[Gates determined based on constitution file]
 
 ## Project Structure
 
 ### Documentation (this feature)
 
 ```text
-specs/002-redesign-calculator-ui/
-├── spec.md              # Feature specification (already complete)
-├── plan.md              # This file (implementation plan)
-├── research.md          # Phase 0 output (design research - generated below)
-├── data-model.md        # Phase 1 output (component/layout model)
-├── quickstart.md        # Phase 1 output (quick reference guide)
-├── contracts/           # Phase 1 output (API contracts if applicable)
-├── checklists/
-│   └── requirements.md  # Specification quality checklist (already complete)
-└── tasks.md             # Phase 2 output (task breakdown - created by /sp.tasks)
+specs/[###-feature]/
+├── plan.md              # This file (/sp.plan command output)
+├── research.md          # Phase 0 output (/sp.plan command)
+├── data-model.md        # Phase 1 output (/sp.plan command)
+├── quickstart.md        # Phase 1 output (/sp.plan command)
+├── contracts/           # Phase 1 output (/sp.plan command)
+└── tasks.md             # Phase 2 output (/sp.tasks command - NOT created by /sp.plan)
 ```
 
 ### Source Code (repository root)
+<!--
+  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
+  for this feature. Delete unused options and expand the chosen structure with
+  real paths (e.g., apps/admin, packages/something). The delivered plan must
+  not include Option labels.
+-->
 
 ```text
-frontend/
-├── src/
-│   ├── main.js                           # Entry point (no changes needed)
-│   ├── styles/
-│   │   ├── main.css                      # MODIFIED: Add responsive grid layout
-│   │   ├── responsive.css                # NEW: Media queries for breakpoints
-│   │   └── calculator-sections.css       # NEW: Calculator section styling
-│   ├── components/
-│   │   ├── ConversionForm.js             # MODIFIED: Add wrapper div with section styling
-│   │   ├── FunctionInput.js              # MODIFIED: Add wrapper div with section styling
-│   │   ├── ExpressionInput.js            # MODIFIED: Add wrapper div with section styling
-│   │   ├── CalculatorLayout.js           # NEW: Main layout container with grid
-│   │   └── CalculatorSection.js          # NEW: Wrapper component for each calculator
-│   └── index.html                         # No changes needed
-├── tests/
-│   ├── responsive-layout.test.js         # NEW: Test layout at different breakpoints
-│   ├── accessibility.test.js              # NEW: WCAG 2.1 AA compliance tests
-│   └── visual-regression.test.js          # NEW: Visual consistency tests
-└── package.json                           # MODIFIED: Add test dependencies
+# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
+src/
+├── models/
+├── services/
+├── cli/
+└── lib/
 
 tests/
-└── frontend-integration/                  # NEW: Integration tests for full calculator
+├── contract/
+├── integration/
+└── unit/
+
+# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
+backend/
+├── src/
+│   ├── models/
+│   ├── services/
+│   └── api/
+└── tests/
+
+frontend/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   └── services/
+└── tests/
+
+# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
+api/
+└── [same as backend above]
+
+ios/ or android/
+└── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
-**Structure Decision**: Web (frontend only). No backend changes. All modifications are CSS/JavaScript layout reorganization. Existing components maintain their functionality; only presentation layer changes.
-
-## Design Decisions
-
-### Decision 1: CSS Grid vs Flexbox
-**Chosen**: CSS Grid for main layout, Flexbox for component internals
-
-**Rationale**: CSS Grid provides better 2D layout control for responsive columns. Flexbox is better suited for internal component layouts (button groups, input rows). This combination gives maximum flexibility and browser support.
-
-**Alternatives Considered**:
-- Flexbox only: Would require nested flex containers, less optimal for multi-column layout
-- CSS Subgrid: Better long-term but browser support still limited in older versions
-
-### Decision 2: Mobile-First vs Desktop-First
-**Chosen**: Mobile-first responsive design
-
-**Rationale**: Matches project constitution preference and ensures mobile usability as baseline. Desktop enhancements use progressive enhancement via media queries.
-
-### Decision 3: Breakpoint Strategy
-**Chosen**: Three breakpoints aligned with spec requirements:
-- Mobile: <768px (base styles)
-- Tablet: 768px-1199px (1-2 columns)
-- Desktop: ≥1200px (2-3 columns)
-
-**Rationale**: Covers all major device categories. 768px and 1200px are industry-standard breakpoints. Ensures no horizontal scrolling at any breakpoint.
-
-### Decision 4: Component Architecture
-**Chosen**: Wrapper component approach (CalculatorLayout + CalculatorSection)
-
-**Rationale**: Avoids modifying existing calculator components. New wrapper handles layout while existing components provide functionality. Maintains separation of concerns and allows independent testing.
+**Structure Decision**: [Document the selected structure and reference the real
+directories captured above]
 
 ## Complexity Tracking
 
-No constitution violations. All design decisions are justified and aligned with project principles.
+> **Fill ONLY if Constitution Check has violations that must be justified**
+
+| Violation | Why Needed | Simpler Alternative Rejected Because |
+|-----------|------------|-------------------------------------|
+| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |

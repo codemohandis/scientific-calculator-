@@ -133,3 +133,27 @@ As a user, I want each calculator section to have a clear title, distinct backgr
 - Adding new calculator types or features
 - Changing color scheme or branding (only layout changes)
 - Converting the calculator to a different technology stack
+
+## Clarifications
+
+### Session 2026-01-18
+
+- Q: Which WCAG accessibility standard should the redesigned UI meet? → A: WCAG 2.1 Level AA (industry standard for modern web applications)
+- Q: When users interact with multiple calculators simultaneously, should their inputs and results be independent or linked? → A: Independent & Parallel - each calculator operates completely independently with no data sharing
+- Q: How should validation errors and error messages be displayed within each calculator section? → A: Inline Below Input - error messages appear directly below problematic input fields with reserved space to prevent layout shift
+- Q: What visual distinction method should differentiate the three calculator sections? → A: Card-Based with Background Color - each calculator in its own card container with subtle background color, 1px border, and border-radius
+- Q: What maximum width should the calculator layout use on very large screens (4K displays and beyond)? → A: 1400px max-width - balanced constraint for readable layout on ultra-wide monitors
+
+### Integration into Requirements
+
+The following clarifications have been incorporated into the specification:
+
+**Accessibility (FR-009)**: All calculator sections must meet WCAG 2.1 Level AA compliance standard for keyboard navigation, screen reader support, and color contrast ratios.
+
+**Interaction Model (FR-010)**: Each calculator operates as an independent component with no shared state. Users can interact with all three simultaneously without sequential requirements or data dependencies.
+
+**Error Handling (FR-011)**: Validation errors display inline below the input field with reserved space to prevent layout shifts. This maintains visual stability and keeps error context near the problematic field.
+
+**Visual Design (FR-012)**: Calculator sections use card-based styling with background color (#f5f5f5 or neutral), 1px solid border, and 8px border-radius for visual distinction and modern appearance.
+
+**Layout Constraints (FR-013)**: Maximum width of 1400px applies on large screens (4K displays) with content centered using `margin: 0 auto` to prevent excessive stretching while utilizing modern wide displays.
