@@ -244,7 +244,27 @@ API Endpoints:
  * Restarting with watchdog (windowsapi)
  * Debugger is active!
  * Debugger PIN: 100-607-189
-i)
+ * Detected change in 'C:\\Users\\hijaz trd\\Documents\\specifyplus\\demo.py', reloading
+
+======================================================================
+  Scientific Calculator API Server
+======================================================================
+
+Environment: development
+Debug: True
+Server starting on http://127.0.0.1:8000/
+
+API Endpoints:
+  POST /convert    - Convert between units
+  POST /evaluate   - Evaluate mathematical expressions
+  GET  /functions  - List available functions
+  POST /functions  - Evaluate a function
+  GET  /units      - List available units
+  GET  /health     - Health check
+
+======================================================================
+
+ * Restarting with watchdog (windowsapi)
  * Debugger is active!
  * Debugger PIN: 100-607-189
  * Detected change in 'C:\\Users\\hijaz trd\\Documents\\specifyplus\\server.py', reloading
@@ -253,35 +273,24 @@ i)
   Scientific Calculator API Server
 ======================================================================
 
-Server starting on http://localhost:8000/
+Environment: development
+Debug: True
+Server starting on http://127.0.0.1:8000/
 
-API Endpoints (proxied via Vite from /api/*):
-  POST /api/convert    -> /convert      - Convert between units
-  POST /api/evaluate   -> /evaluate     - Evaluate mathematical expressions
-  GET  /api/functions  -> /functions    - List available functions
-  POST /api/functions  -> /functions    - Evaluate a function
-  GET  /api/units      -> /units        - List available units
-  GET  /api/health     -> /health       - Health check
-
-Frontend:
-  Access via http://localhost:5173/ (Vite dev server)
-  Vite will automatically proxy /api/* requests to http://localhost:8000/*
-
-To use the calculator:
-  1. Keep this API server running (localhost:8000)
-  2. Frontend is already running on localhost:5173
-  3. Open http://localhost:5173 in your browser
+API Endpoints:
+  POST /convert    - Convert between units
+  POST /evaluate   - Evaluate mathematical expressions
+  GET  /functions  - List available functions
+  POST /functions  - Evaluate a function
+  GET  /units      - List available units
+  GET  /health     - Health check
 
 ======================================================================
 
  * Restarting with watchdog (windowsapi)
  * Debugger is active!
  * Debugger PIN: 100-607-189
- * Detected change in 'C:\\Users\\hijaz trd\\Documents\\specifyplus\\.claude\\skills\\skill-creator\\scripts\\init_skill.py', reloading
-
-======================================================================
-  Scientific Calculator API Server
-======================================================================
+===
 
 Environment: development
 Debug: True
@@ -369,20 +378,26 @@ API Endpoints:
  * Restarting with watchdog (windowsapi)
  * Debugger is active!
  * Debugger PIN: 100-607-189
- -> /units        - List available units
-  GET  /api/health     -> /health       - Health check
+ * Detected change in 'C:\\Users\\hijaz trd\\Documents\\specifyplus\\demo.py', reloading
 
-Frontend:
-  Access via http://localhost:5173/ (Vite dev server)
-  Vite will automatically proxy /api/* requests to http://localhost:8000/*
+======================================================================
+  Scientific Calculator API Server
+======================================================================
 
-To use the calculator:
-  1. Keep this API server running (localhost:8000)
-  2. Frontend is already running on localhost:5173
-  3. Open http://localhost:5173 in your browser
+Environment: development
+Debug: True
+Server starting on http://127.0.0.1:8000/
+
+API Endpoints:
+  POST /convert    - Convert between units
+  POST /evaluate   - Evaluate mathematical expressions
+  GET  /functions  - List available functions
+  POST /functions  - Evaluate a function
+  GET  /units      - List available units
+  GET  /health     - Health check
 
 ======================================================================
 
- * Restarting with stat
+ * Restarting with watchdog (windowsapi)
  * Debugger is active!
- * Debugger PIN: 254-790-820
+ * Debugger PIN: 100-607-189

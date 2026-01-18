@@ -5,8 +5,8 @@
 
 import axios from 'axios';
 
-// Default API base URL
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+// Default API base URL - using Vite environment variables
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 // Create axios instance with default config
 const apiClient = axios.create({

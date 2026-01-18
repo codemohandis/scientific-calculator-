@@ -5,6 +5,8 @@
  * and API integration for converting between units.
  */
 
+import { convert } from '../services/calculatorApi.js';
+
 /**
  * Create and render the conversion form
  * @returns {HTMLElement} A container with the form and result display elements
@@ -192,23 +194,7 @@ async function handleConversionSubmit(event) {
  * @returns {Promise<number>} The converted value
  */
 async function convertUnits(value, fromUnit, toUnit) {
-    const response = await fetch('/api/convert', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            value: value,
-            from_unit: fromUnit,
-            to_unit: toUnit,
-        }),
-    });
-
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
+    const data = await convert(value, fromUnit, toUnit);
 
     if (data.error) {
         throw new Error(data.error);

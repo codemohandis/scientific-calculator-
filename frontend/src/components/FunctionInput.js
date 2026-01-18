@@ -5,6 +5,8 @@
  * logarithmic, exponential, and statistical functions.
  */
 
+import { evaluateFunction } from '../services/calculatorApi.js';
+
 /**
  * Create and render the function input form
  * @returns {HTMLElement} A container with the form and result display elements
@@ -290,7 +292,7 @@ async function handleFunctionSubmit(event) {
     }
 
     try {
-        const result = await evaluateFunction(functionName, args);
+        const result = await callEvaluateFunction(functionName, args);
         displayFunctionResult(result, functionName, args);
     } catch (error) {
         showFunctionError(`Error: ${error.message}`);
@@ -303,27 +305,8 @@ async function handleFunctionSubmit(event) {
  * @param {Array} args - The function arguments
  * @returns {Promise<number>} The function result
  */
-async function evaluateFunction(functionName, args) {
-    // For statistical functions with multiple args, pass as array
-    const isStatistical = ['mean', 'median', 'mode', 'stdev', 'variance'].includes(functionName);
-    const payload = isStatistical ? args : args;
-
-    const response = await fetch('/api/functions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            function: functionName,
-            arguments: payload,
-        }),
-    });
-
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
+async function callEvaluateFunction(functionName, args) {
+    const data = await evaluateFunction(functionName, args);
 
     if (data.error) {
         throw new Error(data.error);

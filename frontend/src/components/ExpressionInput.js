@@ -11,6 +11,8 @@
  * - Accessibility support (WCAG 2.1 AA)
  */
 
+import { evaluateExpression } from '../services/calculatorApi.js';
+
 /**
  * Create and render the expression input form
  * @returns {HTMLElement} The form element with result display elements
@@ -68,22 +70,7 @@ export function createExpressionInput() {
  */
 async function handleExpressionEvaluate(data) {
     try {
-        const response = await fetch('/api/evaluate', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                expression: data.expression,
-                context: {},
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
+        const result = await evaluateExpression(data.expression, {});
 
         if (result.error) {
             handleExpressionError(result.error);
