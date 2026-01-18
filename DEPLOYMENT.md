@@ -55,15 +55,28 @@ Complete guide to deploy your Scientific Calculator to **Vercel** (Frontend) and
 
 ## 🎨 Frontend Deployment (Vercel)
 
-### Step 1: Prepare GitHub Repository
+### Step 1: Verify GitHub Repository
 
-Ensure all changes are committed and pushed:
+✅ **All configuration files are already committed!**
+
+Your repository includes:
+- `vercel.json` (root level) - Handles monorepo subdirectory structure
+- `frontend/package.json` - Frontend dependencies
+- `requirements.txt` - Backend dependencies
+- `render.yaml` - Backend configuration
+- `server.py` - Production-ready Flask app
+
+To verify everything is up to date:
 
 ```bash
-cd "C:\Users\hijaz trd\Documents\specifyplus"
-git status
+git status          # Should show "nothing to commit"
+git log --oneline   # Should show recent commits
+```
+
+If you made any changes, commit and push:
+```bash
 git add .
-git commit -m "Prepare for deployment"
+git commit -m "Update deployment files"
 git push origin main
 ```
 
@@ -84,14 +97,16 @@ git push origin main
 
 ### Step 4: Configure Build Settings
 
-Vercel should auto-detect Vite. Verify these settings:
+✅ **Already configured!** The `vercel.json` in your repository root is already set up for this monorepo structure.
 
+Vercel will use:
 ```
-Framework: Vite
-Build Command: npm run build
-Output Directory: dist
-Install Command: npm install
+Build Command: cd frontend && npm install && npm run build
+Output Directory: frontend/dist
+Framework: Vite (auto-detected)
 ```
+
+**Why the special build command?** Your frontend is in a subdirectory (`frontend/`), so Vercel needs to navigate there first, install dependencies, and build from that directory.
 
 ### Step 5: Add Environment Variables
 
@@ -281,6 +296,8 @@ If all buttons work and copy works, your deployment is **SUCCESSFUL!** 🎉
 
 ## 🐛 Troubleshooting
 
+> **📝 Note:** The Vercel subdirectory build issue has been fixed in `vercel.json` at the project root. If you're seeing a build failure related to npm dependencies or file paths, try redeploying (Deployments → three dots → Redeploy).
+
 ### Issue 1: "Cannot connect to API"
 
 **Symptoms:**
@@ -355,8 +372,25 @@ python server.py --help
    - Missing npm dependencies
    - Wrong build command
    - Node version mismatch
+   - **Subdirectory structure not handled** (if using monorepo)
 
-**Fix:**
+**For subdirectory issue (already fixed):**
+
+The `vercel.json` at your project root handles the subdirectory structure:
+```json
+{
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist"
+}
+```
+
+This tells Vercel to:
+1. Navigate to the `frontend` directory
+2. Install dependencies there
+3. Build from that directory
+4. Use `frontend/dist` as the output
+
+**Fix for other issues:**
 ```bash
 # Verify frontend works locally
 cd frontend
@@ -472,7 +506,7 @@ git push origin main
 - [ ] All code committed to GitHub
 - [ ] `requirements.txt` created
 - [ ] `server.py` updated for production
-- [ ] `vercel.json` in frontend directory
+- [ ] `vercel.json` in project root (handles subdirectory build)
 - [ ] `render.yaml` in project root
 
 ### Vercel Deployment
@@ -564,5 +598,5 @@ Your Scientific Calculator is now deployed and accessible worldwide!
 
 ---
 
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-19 (Fixed Vercel subdirectory build configuration)
 **Status:** Production Ready ✅
