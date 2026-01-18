@@ -13,20 +13,152 @@
 
 /**
  * Create and render the expression input form
- * @returns {HTMLElement} The form element
+ * @returns {HTMLElement} The form element with result display elements
  */
 export function createExpressionInput() {
+    const outerContainer = document.createElement('div');
+    outerContainer.className = 'expression-container';
+
     const container = document.createElement('div');
     container.id = 'expression-input-container';
+
+    // Create result display element
+    const resultElement = document.createElement('div');
+    resultElement.id = 'expression-result';
+    resultElement.className = 'result-display';
+    resultElement.setAttribute('aria-live', 'polite');
+    resultElement.setAttribute('aria-atomic', 'true');
+    resultElement.setAttribute('aria-hidden', 'true');
+
+    // Create error message element
+    const errorElement = document.createElement('div');
+    errorElement.id = 'error-message';
+    errorElement.className = 'error-display';
+    errorElement.setAttribute('aria-hidden', 'true');
+
+    // Create screen reader announcement element
+    const srElement = document.createElement('div');
+    srElement.id = 'sr-announcement';
+    srElement.className = 'sr-only';
+    srElement.setAttribute('aria-live', 'assertive');
+    srElement.setAttribute('aria-atomic', 'true');
+
+    // Assemble container
+    outerContainer.appendChild(container);
+    outerContainer.appendChild(resultElement);
+    outerContainer.appendChild(errorElement);
+    outerContainer.appendChild(srElement);
 
     // Instantiate ExpressionInput after returning (it will initialize on next tick)
     setTimeout(() => {
         if (container.parentElement) {
-            new ExpressionInput('expression-input-container');
+            new ExpressionInput('expression-input-container', {
+                onEvaluate: (data) => handleExpressionEvaluate(data),
+                onError: (error) => handleExpressionError(error),
+            });
         }
     }, 0);
 
-    return container;
+    return outerContainer;
+}
+
+/**
+ * Handle expression evaluation - call backend API
+ * @param {Object} data - Evaluation data with expression and timestamp
+ */
+async function handleExpressionEvaluate(data) {
+    try {
+        const response = await fetch('/api/evaluate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                expression: data.expression,
+                context: {},
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.error) {
+            handleExpressionError(result.error);
+            return;
+        }
+
+        displayExpressionResult(result.result, data.expression);
+    } catch (error) {
+        handleExpressionError(`Error: ${error.message}`);
+    }
+}
+
+/**
+ * Display expression evaluation result
+ * @param {number} result - The evaluated result
+ * @param {string} expression - The original expression
+ */
+function displayExpressionResult(result, expression) {
+    const resultElement = document.getElementById('expression-result');
+    if (resultElement) {
+        const resultText = typeof result === 'number' ?
+            (result.toFixed(6).replace(/\.?0+$/, '')) :
+            String(result);
+
+        resultElement.innerHTML = `
+            <div class="result-content">
+                <p class="result-label">Expression: ${expression}</p>
+                <p class="result-value">${resultText}</p>
+                <button class="btn btn-secondary" id="copy-expression-result-btn">
+                    Copy Result
+                </button>
+            </div>
+        `;
+        resultElement.removeAttribute('aria-hidden');
+
+        // Attach copy button handler
+        const copyBtn = document.getElementById('copy-expression-result-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(resultText).then(() => {
+                    announceExpressionToScreenReader('Result copied to clipboard');
+                }).catch(err => {
+                    handleExpressionError('Failed to copy to clipboard');
+                });
+            });
+        }
+
+        // Announce result to screen readers
+        announceExpressionToScreenReader(`Expression evaluated: ${expression} equals ${resultText}`);
+    }
+}
+
+/**
+ * Handle expression evaluation error
+ * @param {string} message - The error message
+ */
+function handleExpressionError(message) {
+    const errorElement = document.getElementById('error-message');
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.setAttribute('role', 'alert');
+        errorElement.removeAttribute('aria-hidden');
+        announceExpressionToScreenReader(`Error: ${message}`);
+    }
+}
+
+/**
+ * Announce a message to screen readers for expression evaluator
+ * @param {string} message - The message to announce
+ */
+function announceExpressionToScreenReader(message) {
+    const announcement = document.getElementById('sr-announcement');
+    if (announcement) {
+        announcement.textContent = message;
+    }
 }
 
 class ExpressionInput {

@@ -7,9 +7,12 @@
 
 /**
  * Create and render the function input form
- * @returns {HTMLElement} The form element
+ * @returns {HTMLElement} A container with the form and result display elements
  */
 export function createFunctionInput() {
+    const container = document.createElement('div');
+    container.className = 'function-container';
+
     const form = document.createElement('form');
     form.id = 'function-form';
     form.className = 'function-form';
@@ -70,11 +73,38 @@ export function createFunctionInput() {
     form.appendChild(helpBox);
     form.appendChild(submitButton);
 
+    // Create result display element
+    const resultElement = document.createElement('div');
+    resultElement.id = 'function-result';
+    resultElement.className = 'result-display';
+    resultElement.setAttribute('aria-live', 'polite');
+    resultElement.setAttribute('aria-atomic', 'true');
+    resultElement.setAttribute('aria-hidden', 'true');
+
+    // Create error message element
+    const errorElement = document.createElement('div');
+    errorElement.id = 'error-message';
+    errorElement.className = 'error-display';
+    errorElement.setAttribute('aria-hidden', 'true');
+
+    // Create screen reader announcement element
+    const srElement = document.createElement('div');
+    srElement.id = 'sr-announcement';
+    srElement.className = 'sr-only';
+    srElement.setAttribute('aria-live', 'assertive');
+    srElement.setAttribute('aria-atomic', 'true');
+
+    // Assemble container
+    container.appendChild(form);
+    container.appendChild(resultElement);
+    container.appendChild(errorElement);
+    container.appendChild(srElement);
+
     // Add event listeners
     functionSelect.addEventListener('change', (e) => handleFunctionChange(e, argsContainer, helpBox));
     form.addEventListener('submit', handleFunctionSubmit);
 
-    return form;
+    return container;
 }
 
 /**
@@ -318,19 +348,33 @@ function displayFunctionResult(result, functionName, args) {
             return a;
         }).join(', ');
 
+        const resultText = formatResult(result);
+
         resultElement.innerHTML = `
             <div class="result-content">
                 <p class="result-label">${functionName}(${argsStr})</p>
-                <p class="result-value">${formatResult(result)}</p>
-                <button class="btn btn-secondary" onclick="copyFunctionResult('${result}')">
+                <p class="result-value">${resultText}</p>
+                <button class="btn btn-secondary" id="copy-function-result-btn">
                     Copy Result
                 </button>
             </div>
         `;
         resultElement.removeAttribute('aria-hidden');
 
+        // Attach copy button handler
+        const copyBtn = document.getElementById('copy-function-result-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(resultText).then(() => {
+                    announceToScreenReader('Result copied to clipboard');
+                }).catch(err => {
+                    showFunctionError('Failed to copy to clipboard');
+                });
+            });
+        }
+
         // Announce result to screen readers
-        announceToScreenReader(`Function result: ${functionName} of ${argsStr} equals ${formatResult(result)}`);
+        announceToScreenReader(`Function result: ${functionName} of ${argsStr} equals ${resultText}`);
     }
 }
 
@@ -370,17 +414,6 @@ function showFunctionError(message) {
     }
 }
 
-/**
- * Copy result to clipboard
- * @param {number} result - The result to copy
- */
-function copyFunctionResult(result) {
-    navigator.clipboard.writeText(result).then(() => {
-        announceToScreenReader('Result copied to clipboard');
-    }).catch(err => {
-        showFunctionError('Failed to copy to clipboard');
-    });
-}
 
 /**
  * Get function information from the backend

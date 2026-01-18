@@ -115,6 +115,52 @@ def get_function_info(func_name: str) -> dict[str, Any] | None:
     }
 
 
+def evaluate_function(func_name: str, args: list[float]) -> dict[str, Any]:
+    """
+    Evaluate a scientific function with given arguments.
+
+    Args:
+        func_name: Name of the function to evaluate
+        args: List of arguments to pass to the function
+
+    Returns:
+        Dictionary with result or error:
+        - If successful: {"result": float, "error": None}
+        - If error: {"result": None, "error": str}
+
+    Example:
+        >>> evaluate_function("sin", [30])
+        {"result": 0.5, "error": None}
+    """
+    try:
+        registry = get_function_registry()
+
+        if not registry.is_registered(func_name):
+            return {
+                "result": None,
+                "error": f"Function '{func_name}' is not available",
+            }
+
+        func = registry.get(func_name)
+        if not func:
+            return {
+                "result": None,
+                "error": f"Function '{func_name}' could not be found",
+            }
+
+        # Call the function with the provided arguments
+        result = func(*args)
+        return {
+            "result": float(result),
+            "error": None,
+        }
+    except Exception as e:
+        return {
+            "result": None,
+            "error": str(e),
+        }
+
+
 def convert_units(value: float, from_unit: str, to_unit: str) -> dict[str, Any]:
     """
     Convert a value between units.

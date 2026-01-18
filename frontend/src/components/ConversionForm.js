@@ -7,9 +7,12 @@
 
 /**
  * Create and render the conversion form
- * @returns {HTMLElement} The form element
+ * @returns {HTMLElement} A container with the form and result display elements
  */
 export function createConversionForm() {
+    const container = document.createElement('div');
+    container.className = 'conversion-container';
+
     const form = document.createElement('form');
     form.id = 'conversion-form';
     form.className = 'conversion-form';
@@ -94,10 +97,37 @@ export function createConversionForm() {
     form.appendChild(toUnitGroup);
     form.appendChild(submitButton);
 
+    // Create result display element
+    const resultElement = document.createElement('div');
+    resultElement.id = 'conversion-result';
+    resultElement.className = 'result-display';
+    resultElement.setAttribute('aria-live', 'polite');
+    resultElement.setAttribute('aria-atomic', 'true');
+    resultElement.setAttribute('aria-hidden', 'true');
+
+    // Create error message element
+    const errorElement = document.createElement('div');
+    errorElement.id = 'error-message';
+    errorElement.className = 'error-display';
+    errorElement.setAttribute('aria-hidden', 'true');
+
+    // Create screen reader announcement element
+    const srElement = document.createElement('div');
+    srElement.id = 'sr-announcement';
+    srElement.className = 'sr-only';
+    srElement.setAttribute('aria-live', 'assertive');
+    srElement.setAttribute('aria-atomic', 'true');
+
+    // Assemble container
+    container.appendChild(form);
+    container.appendChild(resultElement);
+    container.appendChild(errorElement);
+    container.appendChild(srElement);
+
     // Add form submission handler
     form.addEventListener('submit', handleConversionSubmit);
 
-    return form;
+    return container;
 }
 
 /**
@@ -197,18 +227,31 @@ async function convertUnits(value, fromUnit, toUnit) {
 function displayConversionResult(result, originalValue, fromUnit, toUnit) {
     const resultElement = document.getElementById('conversion-result');
     if (resultElement) {
+        const resultText = `${result.toFixed(5)} ${toUnit}`;
         resultElement.innerHTML = `
             <div class="result-content">
                 <p class="result-text">
                     <strong>${originalValue}</strong> ${fromUnit} =
                     <strong>${result.toFixed(5)}</strong> ${toUnit}
                 </p>
-                <button class="btn btn-secondary" onclick="copyResultToClipboard('${result.toFixed(5)} ${toUnit}')">
+                <button class="btn btn-secondary" id="copy-result-btn">
                     Copy Result
                 </button>
             </div>
         `;
         resultElement.removeAttribute('aria-hidden');
+
+        // Attach copy button handler
+        const copyBtn = document.getElementById('copy-result-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(resultText).then(() => {
+                    announceToScreenReader('Result copied to clipboard');
+                }).catch(err => {
+                    showErrorMessage('Failed to copy to clipboard');
+                });
+            });
+        }
 
         // Announce result to screen readers
         announceToScreenReader(`Conversion complete: ${originalValue} ${fromUnit} equals ${result.toFixed(5)} ${toUnit}`);
@@ -231,17 +274,6 @@ function showErrorMessage(message) {
     }
 }
 
-/**
- * Copy text to clipboard
- * @param {string} text - The text to copy
- */
-function copyResultToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        announceToScreenReader('Result copied to clipboard');
-    }).catch(err => {
-        showErrorMessage('Failed to copy to clipboard');
-    });
-}
 
 /**
  * Announce a message to screen readers
