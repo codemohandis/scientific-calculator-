@@ -2,10 +2,12 @@
 """
 Flask API server for the Scientific Calculator
 Serves REST API endpoints for calculations
-Runs on port 8000, Vite dev server (port 5173) proxies /api/* requests to this server
+Runs on port 8000 (local) or configured PORT (production)
+Vite proxy rewrites /api/* to /* so routes don't include /api prefix
 """
 
 import sys
+import os
 from pathlib import Path
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -23,7 +25,13 @@ from scientific_calculator.api import (
 
 # Create Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for frontend requests
+
+# Configure CORS
+cors_origins = os.environ.get('CORS_ORIGINS', '*')
+if cors_origins != '*':
+    cors_origins = cors_origins.split(',')
+
+CORS(app, origins=cors_origins)  # Enable CORS for frontend requests
 
 # API Routes
 # Note: Vite proxy rewrites /api/* to /* so routes don't include /api prefix
@@ -101,24 +109,25 @@ def health():
     return jsonify({'status': 'ok', 'message': 'API server is running'}), 200
 
 if __name__ == '__main__':
+    # Get configuration from environment
+    port = int(os.environ.get('PORT', 8000))
+    flask_env = os.environ.get('FLASK_ENV', 'development')
+    debug = flask_env != 'production'
+    host = '0.0.0.0' if flask_env == 'production' else '127.0.0.1'
+
     print("\n" + "="*70)
     print("  Scientific Calculator API Server")
     print("="*70)
-    print("\nServer starting on http://localhost:8000/")
-    print("\nAPI Endpoints (proxied via Vite from /api/*):")
-    print("  POST /api/convert    -> /convert      - Convert between units")
-    print("  POST /api/evaluate   -> /evaluate     - Evaluate mathematical expressions")
-    print("  GET  /api/functions  -> /functions    - List available functions")
-    print("  POST /api/functions  -> /functions    - Evaluate a function")
-    print("  GET  /api/units      -> /units        - List available units")
-    print("  GET  /api/health     -> /health       - Health check")
-    print("\nFrontend:")
-    print("  Access via http://localhost:5173/ (Vite dev server)")
-    print("  Vite will automatically proxy /api/* requests to http://localhost:8000/*")
-    print("\nTo use the calculator:")
-    print("  1. Keep this API server running (localhost:8000)")
-    print("  2. Frontend is already running on localhost:5173")
-    print("  3. Open http://localhost:5173 in your browser")
+    print(f"\nEnvironment: {flask_env}")
+    print(f"Debug: {debug}")
+    print(f"Server starting on http://{host}:{port}/")
+    print("\nAPI Endpoints:")
+    print("  POST /convert    - Convert between units")
+    print("  POST /evaluate   - Evaluate mathematical expressions")
+    print("  GET  /functions  - List available functions")
+    print("  POST /functions  - Evaluate a function")
+    print("  GET  /units      - List available units")
+    print("  GET  /health     - Health check")
     print("\n" + "="*70 + "\n")
 
-    app.run(debug=True, port=8000, host='127.0.0.1')
+    app.run(debug=debug, port=port, host=host)
