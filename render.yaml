@@ -3,6 +3,7 @@ services:
     name: scientific-calculator-api
     env: python
     plan: free
+    pythonVersion: 3.12
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn server:app
     envVars:
