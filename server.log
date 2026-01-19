@@ -290,7 +290,11 @@ API Endpoints:
  * Restarting with watchdog (windowsapi)
  * Debugger is active!
  * Debugger PIN: 100-607-189
-===
+ * Detected change in 'C:\\Users\\hijaz trd\\Documents\\specifyplus\\src\\scientific_calculator\\units.py', reloading
+
+======================================================================
+  Scientific Calculator API Server
+======================================================================
 
 Environment: development
 Debug: True
@@ -309,11 +313,7 @@ API Endpoints:
  * Restarting with watchdog (windowsapi)
  * Debugger is active!
  * Debugger PIN: 100-607-189
- * Detected change in 'C:\\Users\\hijaz trd\\AppData\\Roaming\\Python\\Python314\\site-packages\\typing_extensions.py', reloading
-
-======================================================================
-  Scientific Calculator API Server
-======================================================================
+===============
 
 Environment: development
 Debug: True
@@ -379,6 +379,52 @@ API Endpoints:
  * Debugger is active!
  * Debugger PIN: 100-607-189
  * Detected change in 'C:\\Users\\hijaz trd\\Documents\\specifyplus\\demo.py', reloading
+
+======================================================================
+  Scientific Calculator API Server
+======================================================================
+
+Environment: development
+Debug: True
+Server starting on http://127.0.0.1:8000/
+
+API Endpoints:
+  POST /convert    - Convert between units
+  POST /evaluate   - Evaluate mathematical expressions
+  GET  /functions  - List available functions
+  POST /functions  - Evaluate a function
+  GET  /units      - List available units
+  GET  /health     - Health check
+
+======================================================================
+
+ * Restarting with watchdog (windowsapi)
+ * Debugger is active!
+ * Debugger PIN: 100-607-189
+ * Detected change in 'C:\\Users\\hijaz trd\\Documents\\specifyplus\\server.py', reloading
+
+======================================================================
+  Scientific Calculator API Server
+======================================================================
+
+Environment: development
+Debug: True
+Server starting on http://127.0.0.1:8000/
+
+API Endpoints:
+  POST /convert    - Convert between units
+  POST /evaluate   - Evaluate mathematical expressions
+  GET  /functions  - List available functions
+  POST /functions  - Evaluate a function
+  GET  /units      - List available units
+  GET  /health     - Health check
+
+======================================================================
+
+ * Restarting with watchdog (windowsapi)
+ * Debugger is active!
+ * Debugger PIN: 100-607-189
+ * Detected change in 'C:\\Users\\hijaz trd\\Documents\\specifyplus\\src\\scientific_calculator\\units.py', reloading
 
 ======================================================================
   Scientific Calculator API Server
